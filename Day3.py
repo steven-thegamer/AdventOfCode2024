@@ -27,7 +27,7 @@ for i in index_with_muls:
 
 print(total)
 
-# Task 2 (incomplete)
+# Task 2
 
 total = 0
 
@@ -40,6 +40,7 @@ while True:
         break
     do_index.append(i)
     i += 1
+
 i = 0
 while True:
     i = whole_string.find("don't()",i)
@@ -60,18 +61,18 @@ if len(do_index) != 0:
 new_index_with_muls = []
 
 for index in index_with_muls:
-    if index > index_dont and do == True and index_dont != -1:
-        do = False
-        if index_dont != -1:
-            dont_index.pop(0)
+    if index > index_dont and index_dont != -1:
+        if do == True:
+            do = False
+        dont_index.pop(0)
         if len(dont_index) != 0:
             index_dont = dont_index[0]
         else:
             index_dont = -1
-    if index > index_do and do == False and index_do != -1:
-        do = True
-        if index_do != -1:
-            do_index.pop(0)
+    if index > index_do and index_do != -1:
+        if do == False:
+            do = True
+        do_index.pop(0)
         if len(do_index) != 0:
             index_do = do_index[0]
         else:
