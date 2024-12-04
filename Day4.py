@@ -6,6 +6,9 @@ with open('Untitled2.txt') as f:
 
 max_x = len(arr[0])
 max_y = len(arr)
+
+# Task 1
+
 xmas = 0
 
 for y in range(max_y):
@@ -30,6 +33,8 @@ for y in range(max_y):
             
             
 print(xmas)
+
+# Task 2
 
 x_mas = 0
 for y in range(max_y):
