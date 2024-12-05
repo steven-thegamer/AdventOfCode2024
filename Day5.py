@@ -45,26 +45,26 @@ with open('Untitled3.txt') as g:
             total += int(arr_line[n//2])
 print(total)
 
-# Task 2 (incomplete)
+# Task 2
+
+total = 0
 
 for line in all_incorrect_rows:
     n = len(line)
     i = 0
-    j = 0
-    while i < n:
-        while j < n:
-            if i < j:
-                if line[j] in rules_back and line[i] in rules_back[line[i]]:
-                    line[i],line[j] = line[j],line[i]
-                    j = -1
-                    i = 0
-            elif i > j:
-                if line[j] in rules_front and line[i] in rules_front[line[i]]:
-                    line[i],line[j] = line[j],line[i]
-                    j = -1
-                    i = 0
-            j += 1
-        i += 1
+    checker = True
+    while checker:
+        checker = False
+        for i in range(n):
+            for j in range(n):
+                if i < j:
+                    if line[j] in rules_front and line[i] in rules_front[line[j]]:
+                        line[i],line[j] = line[j],line[i]
+                        checker = True
+                elif j < i:
+                    if line[j] in rules_back and line[i] in rules_back[line[j]]:
+                        line[i],line[j] = line[j],line[i]
+                        checker = True
     total += int(line[n//2])
 
 print(total)
