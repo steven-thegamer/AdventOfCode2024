@@ -2,6 +2,7 @@
 # Online Python - IDE, Editor, Compiler, Interpreter
 walls = []
 curr_pos = [0,0]
+prev_pos = [-1,-1]
 direction = 0 # 0 is up, 1 is right, 2 is down, 3 is left
 with open('Untitled2.txt') as f:
     lines = f.readlines()
@@ -15,6 +16,7 @@ with open('Untitled2.txt') as f:
                 curr_pos = [x,y]
                 
 # Task 1
+looping = 0
 visited_pos = {tuple(curr_pos):1}
 while True:
     if direction == 0: # goes up
@@ -25,6 +27,7 @@ while True:
         curr_pos[1] += 1
     elif direction == 3: # goes left
         curr_pos[0] -= 1
+    
     if curr_pos in walls:
         if direction == 0:
             curr_pos[1] -= -1
@@ -36,6 +39,16 @@ while True:
             curr_pos[0] -= -1
         direction += 1
         direction = direction % 4
+    elif tuple(curr_pos) not in visited_pos:
+        if direction == 0 and curr_pos[0] < max_x - 1 and tuple([curr_pos[0] + 1,curr_pos[1]]) in visited_pos:
+            looping += 1
+        if direction == 1 and curr_pos[1] < max_y - 1 and tuple([curr_pos[0],curr_pos[1] + 1]) in visited_pos:
+            looping += 1
+        if direction == 2 and curr_pos[0] > 0 and tuple([curr_pos[0] - 1,curr_pos[1]]) in visited_pos:
+            looping += 1
+        if direction == 3 and curr_pos[1] > 0 and tuple([curr_pos[0],curr_pos[1] - 1]) in visited_pos:
+            looping += 1
+    
     check = curr_pos[0] >= 0 and curr_pos[1] >= 0 and curr_pos[0] < max_x and curr_pos[1] < max_y
     if check == False:
         break
@@ -44,5 +57,4 @@ while True:
 print(len(visited_pos))
 
 # Task 2
-
-
+print(looping)
